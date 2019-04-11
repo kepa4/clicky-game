@@ -4,7 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 function Header() {
   const style = {
     jumbotron: {
-      'text-align': 'center',
+      textAlign: 'center',
     },
   };
   return (
