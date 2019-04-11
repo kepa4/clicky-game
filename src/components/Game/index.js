@@ -21,11 +21,14 @@ function shuffle(array) {
 }
 
 class Game extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       pictures: shuffle(pictures),
+      score: 0,
+      lastPicked: null,
+      message: '',
     };
   }
 
@@ -33,24 +36,35 @@ class Game extends React.Component {
     this.setState({pictures: shuffle(pictures)});
   }
 
-  handleClick = () => {
+  handleClick = picture => {
+    if (this.state.lastPicked !== picture) {
+      this.setState({score: this.state.score + 1});
+    } else {
+      this.setState({score: 0});
+      this.setState({lastPicked: null});
+    }
+    this.setState({lastPicked: picture});
     this.setState({pictures: shuffle(pictures)});
   };
 
   render() {
     return (
-      <div className="wrapper">
-        {this.state.pictures.map((picture, index) => {
-          return (
-            <div
-              onClick={() => {
-                this.handleClick();
-              }}
-              key={index}>
-              <GameCard image={picture} key={index} />
-            </div>
-          );
-        })}
+      <div>
+        <h3>Score: {this.state.score} </h3>
+
+        <div className="wrapper">
+          {this.state.pictures.map((picture, index) => {
+            return (
+              <div
+                onClick={() => {
+                  this.handleClick(picture);
+                }}
+                key={index}>
+                <GameCard image={picture} key={index} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
