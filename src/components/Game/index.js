@@ -28,7 +28,7 @@ class Game extends React.Component {
       pictures: shuffle(pictures),
       score: 0,
       lastPicked: null,
-      message: '',
+      message: 'Click an Image!',
     };
   }
 
@@ -38,10 +38,15 @@ class Game extends React.Component {
 
   handleClick = picture => {
     if (this.state.lastPicked !== picture) {
-      this.setState({score: this.state.score + 1});
+      this.setState({score: this.state.score + 5});
+      this.setState({message: 'Click an image!'});
     } else {
       this.setState({score: 0});
       this.setState({lastPicked: null});
+      this.setState({
+        message:
+          'You already clicked that one! Game over! Click an image to play again',
+      });
     }
     this.setState({lastPicked: picture});
     this.setState({pictures: shuffle(pictures)});
@@ -51,7 +56,7 @@ class Game extends React.Component {
     return (
       <div>
         <h3>Score: {this.state.score} </h3>
-
+        <h3> {this.state.message} </h3>
         <div className="wrapper">
           {this.state.pictures.map((picture, index) => {
             return (

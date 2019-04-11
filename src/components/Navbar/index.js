@@ -26,13 +26,6 @@ class Navigation extends React.Component {
             <h1>Click an image to begin!</h1>
           </Navbar.Text>
         </Nav>
-        <Nav>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              <h1>Score:</h1>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Nav>
       </Navbar>
     );
   }
