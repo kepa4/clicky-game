@@ -8,7 +8,7 @@ function GameCard(props) {
       width: 300,
     },
   };
-  return <div style={style.card} />;
+  return <div className={'wrapper'} style={style.card} />;
 }
 
 export default GameCard;
